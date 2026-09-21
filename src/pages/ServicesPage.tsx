@@ -86,8 +86,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       <section className="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm space-y-8">
         
         {/* Top Header of Active Service */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 border-b border-slate-200 pb-6">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col items-start justify-between gap-5 border-b border-slate-200 pb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100 shrink-0">
               <IconComponent className="w-8 h-8" />
             </div>

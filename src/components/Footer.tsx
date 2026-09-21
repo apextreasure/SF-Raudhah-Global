@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <img
                   src="/assets/brand/sf-raudhah-logo-horizontal.png"
                   alt="SF Raudhah Global"
-                  className="w-[280px] sm:w-[320px] max-w-none object-contain select-none"
+                  className="w-full h-full object-contain select-none"
                 />
               </div>
             </div>

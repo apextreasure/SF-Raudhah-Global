@@ -129,7 +129,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
       </section>
 
       {/* 3. MISI, VISI & OBJEKTIF */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         <div className="glass-card p-8 rounded-2xl border border-slate-200 space-y-4">
           <div className="w-14 h-14 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
             <Eye className="w-7 h-7" />

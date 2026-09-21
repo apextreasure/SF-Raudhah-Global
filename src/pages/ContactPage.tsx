@@ -140,7 +140,7 @@ export const ContactPage: React.FC = () => {
 
               <div className="flex items-start gap-3.5 pt-3 border-t border-slate-100">
                 <Mail className="w-6 h-6 text-cyan-600 shrink-0 mt-1" />
-                <div>
+                <div className="min-w-0 break-words">
                   <p className="font-bold text-slate-900 text-base sm:text-lg">Emel Pertanyaan & Dokumen:</p>
                   <a
                     href={`mailto:${companyInfo.email}`}

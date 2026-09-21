@@ -155,7 +155,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             <img
               src="/assets/brand/sf-raudhah-logo-horizontal.png"
               alt="SF Raudhah Global"
-              className="w-[240px] xs:w-[280px] sm:w-[320px] max-w-none object-contain select-none"
+              className="w-full h-full object-contain select-none"
               style={{ display: 'block' }}
               onError={(e) => {
                 const target = e.currentTarget;

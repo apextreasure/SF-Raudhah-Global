@@ -158,7 +158,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
 
                 {/* Micro Metric Banner */}
-                <div className="grid grid-cols-2 gap-2.5 mt-3.5 pt-3.5 border-t border-slate-800 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3.5 pt-3.5 border-t border-slate-800 text-sm">
                   <div className="bg-slate-900/70 p-3 rounded-xl border border-slate-800">
                     <span className="text-slate-400 block text-xs">Kategori Kerja</span>
                     <span className="text-white font-bold text-sm sm:text-base">M&E, ELV & Sivil</span>
@@ -177,7 +177,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 2. STATS & KEY METRICS (High Contrast & Clear) */}
       <section id="metrics-strip" className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <div className="glass-card p-6 sm:p-7 rounded-2xl text-center border border-slate-200 shadow-xs hover:border-blue-300 transition-colors">
             <div className="text-4xl sm:text-5xl font-black text-blue-700">54+</div>
             <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">Projek Terlaksana</div>

@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import {
   Search,
-  Filter,
   Image as ImageIcon,
   CheckCircle2,
   Clock,
   MapPin,
-  Building,
   Calendar,
   Layers,
-  ExternalLink,
   ChevronRight,
-  Maximize2,
-  Tag
+  Maximize2
 } from 'lucide-react';
-import { projectsData, ProjectRecord } from '../data/projects';
-import { imageMapData, ImageMapItem } from '../data/imageMap';
+import { projectsData } from '../data/projects';
+import { imageMapData, galleryImages, categoryLabels } from '../data/imageMap';
 
 interface PortfolioPageProps {
   onOpenLightboxByIndex: (index: number) => void;
@@ -39,13 +35,14 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
   const [displayCount, setDisplayCount] = useState<number>(15);
 
   // Filtered gallery items
-  const filteredGallery = imageMapData.filter((item) => {
+  const filteredGallery = galleryImages.filter((item) => {
     const matchesCategory =
       galleryCategory === 'semua' || item.category === galleryCategory;
     const matchesSearch =
-      item.alt_ms.toLowerCase().includes(gallerySearch.toLowerCase()) ||
+      categoryLabels[item.category].toLowerCase().includes(gallerySearch.trim().toLowerCase()) ||
+      item.alt_ms.toLowerCase().includes(gallerySearch.trim().toLowerCase()) ||
       (item.featuredTitle &&
-        item.featuredTitle.toLowerCase().includes(gallerySearch.toLowerCase()));
+        item.featuredTitle.toLowerCase().includes(gallerySearch.trim().toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -93,7 +90,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
             Bukti Rekod & Galeri Tapak
           </span>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Portfolio 54 Projek & 41 Foto Sebenar
+            Portfolio {projectsData.length} Projek & {galleryImages.length} Foto Tapak
           </h1>
           <p className="text-slate-200 text-lg sm:text-xl leading-relaxed font-normal">
             Semua rekod pelaksanaan projek rasmi syarikat bermula daripada projek berskala infrastruktur rel nasional, hab kargo lapangan terbang, hingga fasiliti komersial dan industri.
@@ -102,10 +99,11 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
       </section>
 
       {/* 2. MAIN SECTION SWITCHER TABS */}
-      <section className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-4">
-        <div className="flex items-center gap-2.5 bg-slate-100 p-2 rounded-2xl border border-slate-200 w-full sm:w-auto">
+      <section className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+        <div className="flex flex-col lg:flex-row items-stretch gap-2.5 bg-slate-100 p-2 rounded-2xl border border-slate-200 w-full sm:w-auto">
           <button
             onClick={() => setActiveMainTab('gallery')}
+            aria-pressed={activeMainTab === 'gallery'}
             className={`flex-1 sm:flex-none flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-extrabold text-base sm:text-lg transition-all ${
               activeMainTab === 'gallery'
                 ? 'bg-blue-600 text-white shadow-sm'
@@ -113,10 +111,11 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
             }`}
           >
             <ImageIcon className="w-5 h-5" />
-            <span>Galeri Foto Tapak ({imageMapData.length})</span>
+            <span>Galeri Foto Tapak ({galleryImages.length})</span>
           </button>
           <button
             onClick={() => setActiveMainTab('projects')}
+            aria-pressed={activeMainTab === 'projects'}
             className={`flex-1 sm:flex-none flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-extrabold text-base sm:text-lg transition-all ${
               activeMainTab === 'projects'
                 ? 'bg-blue-600 text-white shadow-sm'
@@ -124,18 +123,18 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
             }`}
           >
             <Layers className="w-5 h-5" />
-            <span>Senarai Penuh 54 Projek</span>
+            <span>Senarai Penuh {projectsData.length} Projek</span>
           </button>
         </div>
 
-        <div className="text-sm sm:text-base text-slate-700 font-bold">
+        <div role="status" aria-live="polite" className="text-sm sm:text-base text-slate-700 font-bold">
           {activeMainTab === 'gallery'
-            ? `Menampilkan ${filteredGallery.length} daripada ${imageMapData.length} foto rekod`
+            ? `Menampilkan ${filteredGallery.length} daripada ${galleryImages.length} foto rekod`
             : `Menampilkan ${filteredProjects.length} daripada ${projectsData.length} rekod kontrak`}
         </div>
       </section>
 
-      {/* 3. VIEW A: GALERI FOTO PROJEK (41 IMAGES) */}
+      {/* 3. VIEW A: GALERI FOTO PROJEK */}
       {activeMainTab === 'gallery' && (
         <section id="gallery-view" className="space-y-8">
           
@@ -144,32 +143,33 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
             {/* Category tabs */}
             <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
               {[
-                { id: 'semua', label: 'Semua Kategori (41)' },
-                { id: 'elektrikal', label: 'Elektrikal (23)' },
-                { id: 'mekanikal', label: 'Mekanikal & HVAC (8)' },
-                { id: 'awam', label: 'Awam & Struktur (8)' },
-                { id: 'keselamatan', label: 'Keselamatan HSE (2)' }
+                { id: 'semua', label: 'Semua Kategori' },
+                ...Object.entries(categoryLabels)
+                  .filter(([id]) => galleryImages.some((item) => item.category === id))
+                  .map(([id, label]) => ({ id, label }))
               ].map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setGalleryCategory(cat.id)}
+                  aria-pressed={galleryCategory === cat.id}
                   className={`px-4 py-2.5 rounded-xl text-sm sm:text-base font-bold transition-colors ${
                     galleryCategory === cat.id
                       ? 'bg-blue-600 text-white shadow-xs'
                       : 'bg-white text-slate-800 hover:bg-slate-200 border border-slate-200'
                   }`}
                 >
-                  {cat.label}
+                  {cat.label} ({cat.id === 'semua' ? galleryImages.length : galleryImages.filter((item) => item.category === cat.id).length})
                 </button>
               ))}
             </div>
 
             {/* Search */}
-            <div className="relative w-full md:w-80">
+            <div className="relative w-full md:w-80 md:shrink-0">
               <Search className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Cari foto (cth: kabel, paip, suis)..."
+                aria-label="Cari foto tapak"
+                placeholder="Cari foto: kabel, paip, suis…"
                 value={gallerySearch}
                 onChange={(e) => setGallerySearch(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
@@ -177,16 +177,32 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
             </div>
           </div>
 
+          {(gallerySearch || galleryCategory !== 'semua') && (
+            <button
+              type="button"
+              onClick={() => { setGallerySearch(''); setGalleryCategory('semua'); }}
+              className="min-h-11 px-4 rounded-xl text-blue-700 font-bold hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              Set semula carian & kategori
+            </button>
+          )}
+          <p className="text-slate-600 text-base leading-relaxed">
+            Dari pencahayaan Saloma Link hingga kerja di tapak industri. Pilih foto untuk melihat paparan penuh dan keterangannya.
+          </p>
+
           {/* Photos Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredGallery.map((item) => {
               // find absolute index in imageMapData for lightbox
               const originalIndex = imageMapData.findIndex((img) => img.file === item.file);
               return (
-                <div
+                <button
+                  type="button"
+                  aria-label={`Buka foto: ${item.featuredTitle || item.alt_ms}`}
+                  aria-haspopup="dialog"
                   key={item.file}
                   onClick={() => onOpenLightboxByIndex(originalIndex >= 0 ? originalIndex : 0)}
-                  className="group glass-card rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md hover:border-blue-400 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                  className="group glass-card rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md hover:border-blue-400 transition-all duration-300 flex flex-col justify-between cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 >
                   {/* Image container */}
                   <div className="relative h-60 sm:h-64 w-full bg-slate-950 overflow-hidden">
@@ -206,12 +222,12 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                           item.category
                         )}`}
                       >
-                        {item.category}
+                        {categoryLabels[item.category]}
                       </span>
                     </div>
 
                     {/* Magnify hover hint */}
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-slate-900/80 rounded-lg text-white">
+                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity p-2 bg-slate-900/80 rounded-lg text-white">
                       <Maximize2 className="w-5 h-5" />
                     </div>
 
@@ -224,10 +240,10 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                   {/* Caption & Metadata */}
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-3 text-left">
                     <div>
-                      <h3 className="font-extrabold text-base sm:text-lg text-slate-900 group-hover:text-blue-700 transition-colors line-clamp-1">
+                      <h3 className="font-extrabold text-base sm:text-lg text-slate-900 group-hover:text-blue-700 transition-colors leading-snug">
                         {item.featuredTitle || item.alt_ms}
                       </h3>
-                      <p className="text-sm sm:text-base text-slate-700 mt-1.5 line-clamp-2 leading-relaxed font-medium">
+                      <p className="text-sm sm:text-base text-slate-700 mt-1.5 leading-relaxed font-medium">
                         {item.alt_ms}
                       </p>
                     </div>
@@ -240,7 +256,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                       <span className="font-mono">{item.dimensions.width}×{item.dimensions.height}</span>
                     </div>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -262,7 +278,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </section>
       )}
 
-      {/* 4. VIEW B: SENARAI LENGKAP 54 PROJEK */}
+      {/* 4. VIEW B: SENARAI LENGKAP PROJEK */}
       {activeMainTab === 'projects' && (
         <section id="projects-table-view" className="space-y-6">
           

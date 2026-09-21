@@ -12,6 +12,15 @@ export interface ImageMapItem {
   featuredTitle?: string;
 }
 
+export const categoryLabels: Record<ImageMapItem['category'], string> = {
+  elektrikal: 'Elektrikal',
+  mekanikal: 'Mekanikal & Penyaman Udara',
+  awam: 'Awam & Struktur',
+  ict: 'ICT & CCTV',
+  keselamatan: 'Keselamatan',
+  am: 'Am',
+};
+
 export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p30-01-site-scaffolding.jpg",
@@ -115,11 +124,11 @@ export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p32-01-industrial-conduits.jpg",
     page: 32,
-    alt_ms: "Konduit elektrik industri dan pendawaian kemas",
-    category: "elektrikal",
-    placements: ["portfolio", "electrical"],
+    alt_ms: "Rangkaian paip air di kawasan industri",
+    category: "mekanikal",
+    placements: ["portfolio", "mechanical"],
     dimensions: { width: 735, height: 709 },
-    featuredTitle: "Pemasangan Konduit Logam Industri"
+    featuredTitle: "Rangkaian Paip Air"
   },
   {
     file: "assets/projects/p32-02-switchboard-testing.jpg",
@@ -133,11 +142,11 @@ export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p32-03-industrial-access-area.jpg",
     page: 32,
-    alt_ms: "Kawasan laluan servis loji dan ruang utiliti industri",
-    category: "awam",
-    placements: ["portfolio", "civil"],
+    alt_ms: "Kemudahan pencuci mata kecemasan di kawasan kerja",
+    category: "keselamatan",
+    placements: ["portfolio", "safety"],
     dimensions: { width: 735, height: 688 },
-    featuredTitle: "Penyediaan Zon Servis & Akses Loji"
+    featuredTitle: "Pencuci Mata Kecemasan"
   },
   {
     file: "assets/projects/p32-04-overhead-services.jpg",
@@ -187,11 +196,11 @@ export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p33-03-industrial-doorway.jpg",
     page: 33,
-    alt_ms: "Pintu masuk kawasan perindustrian dan partition keselamatan",
-    category: "awam",
-    placements: ["portfolio", "civil"],
+    alt_ms: "Pengesan logam untuk pemeriksaan keselamatan di laluan masuk",
+    category: "keselamatan",
+    placements: ["portfolio", "safety"],
     dimensions: { width: 737, height: 716 },
-    featuredTitle: "Pemasangan Pintu Industri & Pemisahan Zon"
+    featuredTitle: "Pengesan Logam Keselamatan"
   },
   {
     file: "assets/projects/p33-04-warehouse-cable-tray.jpg",
@@ -250,11 +259,11 @@ export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p34-04-metering-equipment.jpg",
     page: 34,
-    alt_ms: "Peralatan meter dan panel pemantauan arus elektrik",
-    category: "elektrikal",
-    placements: ["portfolio", "electrical"],
+    alt_ms: "Monitor paparan CCTV dan rak peralatan pemantauan",
+    category: "ict",
+    placements: ["portfolio", "ict"],
     dimensions: { width: 904, height: 440 },
-    featuredTitle: "Peralatan Metering & Pengukuran Sub-meter TNB"
+    featuredTitle: "Monitor CCTV & Rak Peralatan"
   },
   {
     file: "assets/projects/p34-05-control-panel.jpg",
@@ -384,3 +393,22 @@ export const imageMapData: ImageMapItem[] = [
     featuredTitle: "Sistem Rumah Pam Industri & Manifold Tekanan"
   }
 ];
+
+// Keep source records and indices intact for existing page consumers.
+const featuredFiles = [
+  'assets/projects/p35-02-architectural-lighting.jpg',
+  'assets/projects/p33-04-warehouse-cable-tray.jpg',
+  'assets/projects/p36-05-pump-system.jpg',
+  'assets/projects/p33-01-metal-fabrication.jpg',
+];
+
+export const orderGalleryImages = (images: ImageMapItem[]) =>
+  images.filter((image) => !image.duplicate_of).sort((a, b) => {
+    const rank = (file: string) => {
+      const index = featuredFiles.indexOf(file);
+      return index === -1 ? featuredFiles.length : index;
+    };
+    return rank(a.file) - rank(b.file);
+  });
+
+export const galleryImages = orderGalleryImages(imageMapData);
