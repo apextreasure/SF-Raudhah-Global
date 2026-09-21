@@ -4,7 +4,7 @@
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     scroll-behavior: smooth;
-    font-size: 19px; /* Enhanced base size for optimal legibility for elderly users */
+    font-size: 18px; /* Standard A size; native browser zoom remains available. */
     color: #0f172a;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -16,17 +16,7 @@
     }
   }
 
-  html.font-scale-standard {
-    font-size: 18px;
-  }
 
-  html.font-scale-large {
-    font-size: 20.5px;
-  }
-
-  html.font-scale-xlarge {
-    font-size: 23px;
-  }
 
   /* Ensure body copy has high contrast and comfortable leading */
   p, li, span, button, a, label {

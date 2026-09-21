@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, Phone, ArrowUpRight, ZoomIn } from 'lucide-react';
+import { Menu, X, MessageCircle, Phone, ArrowUpRight } from 'lucide-react';
 import { companyInfo } from '../data/companyContent';
 
 export type PageId = 'utama' | 'profil' | 'servis' | 'portfolio' | 'hubungi';
@@ -12,7 +12,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [fontScale, setFontScale] = useState<'standard' | 'large' | 'xlarge'>('large');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,30 +20,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Initialize and apply font scale (default to 'large' for enhanced senior legibility)
-  useEffect(() => {
-    const saved = localStorage.getItem('sf_font_scale') as 'standard' | 'large' | 'xlarge';
-    if (saved && ['standard', 'large', 'xlarge'].includes(saved)) {
-      setFontScale(saved);
-      applyFontScale(saved);
-    } else {
-      setFontScale('large');
-      applyFontScale('large');
-    }
-  }, []);
-
-  const applyFontScale = (scale: 'standard' | 'large' | 'xlarge') => {
-    const htmlEl = document.documentElement;
-    htmlEl.classList.remove('font-scale-standard', 'font-scale-large', 'font-scale-xlarge');
-    htmlEl.classList.add(`font-scale-${scale}`);
-    localStorage.setItem('sf_font_scale', scale);
-  };
-
-  const handleSetFontScale = (scale: 'standard' | 'large' | 'xlarge') => {
-    setFontScale(scale);
-    applyFontScale(scale);
-  };
 
   const navItems: { id: PageId; label: string }[] = [
     { id: 'utama', label: 'Utama' },
@@ -75,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           : 'bg-white/95 backdrop-blur-md border-b border-slate-200/60'
       }`}
     >
-      {/* Top micro-bar for emergency, office info & font size toggle */}
+      {/* Top micro-bar for company and contact information */}
       <div className="bg-slate-900 text-slate-200 text-sm py-2 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
           <div className="flex items-center gap-2 text-slate-200">
@@ -86,49 +61,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </div>
 
           <div className="flex items-center gap-4 sm:gap-6 text-sm">
-            {/* Font Size Accessibility Adjuster for seniors */}
-            <div className="flex items-center gap-1.5 bg-slate-800/90 px-2.5 py-1 rounded-lg border border-slate-700" title="Ubah saiz tulisan untuk bacaan lebih mudah">
-              <span className="text-slate-300 text-xs sm:text-sm font-semibold hidden sm:inline flex items-center gap-1">
-                <ZoomIn className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Saiz Tulisan:</span>
-              </span>
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={() => handleSetFontScale('standard')}
-                  className={`px-2 py-0.5 rounded text-xs sm:text-sm font-bold transition-colors ${
-                    fontScale === 'standard'
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                  title="Saiz Standard"
-                >
-                  A
-                </button>
-                <button
-                  onClick={() => handleSetFontScale('large')}
-                  className={`px-2 py-0.5 rounded text-xs sm:text-sm font-bold transition-colors ${
-                    fontScale === 'large'
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                  title="Saiz Besar (Disyorkan)"
-                >
-                  A+
-                </button>
-                <button
-                  onClick={() => handleSetFontScale('xlarge')}
-                  className={`px-2 py-0.5 rounded text-xs sm:text-sm font-bold transition-colors ${
-                    fontScale === 'xlarge'
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                  title="Saiz Sangat Besar"
-                >
-                  A++
-                </button>
-              </div>
-            </div>
-
             <a
               href="tel:+60166000127"
               className="flex items-center gap-1.5 text-white font-bold hover:text-cyan-300 transition-colors"
@@ -169,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         </div>
 
         {/* Desktop Navigation Links: ONLY Utama / Profil / Servis / Portfolio */}
-        <nav className="hidden lg:flex items-center gap-2" aria-label="Navigasi Utama">
+        <nav className="hidden xl:flex items-center gap-2" aria-label="Navigasi Utama">
           {navItems.map((item) => {
             const isActive = currentPage === item.id;
             return (
@@ -217,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label="Buka Menu Navigasi"
-          className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="xl:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -227,42 +159,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
       {mobileMenuOpen && (
         <div
           id="mobile-navigation-drawer"
-          className="lg:hidden bg-white border-b border-slate-200 shadow-xl px-4 py-5 space-y-4 animate-fadeIn"
+          className="xl:hidden bg-white border-b border-slate-200 shadow-xl px-4 py-5 space-y-4 animate-fadeIn"
         >
-          {/* Mobile Font Size Toggle */}
-          <div className="flex items-center justify-between p-3 bg-slate-100 rounded-xl border border-slate-200">
-            <span className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-              <ZoomIn className="w-4 h-4 text-blue-600" />
-              <span>Saiz Tulisan Laman:</span>
-            </span>
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => handleSetFontScale('standard')}
-                className={`px-3 py-1 rounded-lg text-sm font-bold ${
-                  fontScale === 'standard' ? 'bg-blue-600 text-white' : 'bg-white text-slate-700 border border-slate-200'
-                }`}
-              >
-                A (Biasa)
-              </button>
-              <button
-                onClick={() => handleSetFontScale('large')}
-                className={`px-3 py-1 rounded-lg text-sm font-bold ${
-                  fontScale === 'large' ? 'bg-blue-600 text-white' : 'bg-white text-slate-700 border border-slate-200'
-                }`}
-              >
-                A+ (Besar)
-              </button>
-              <button
-                onClick={() => handleSetFontScale('xlarge')}
-                className={`px-3 py-1 rounded-lg text-sm font-bold ${
-                  fontScale === 'xlarge' ? 'bg-blue-600 text-white' : 'bg-white text-slate-700 border border-slate-200'
-                }`}
-              >
-                A++
-              </button>
-            </div>
-          </div>
-
           <div className="flex flex-col space-y-1 pb-3 border-b border-slate-100">
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
@@ -303,7 +201,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               <span>WhatsApp Kami (+60 16-600 0127)</span>
             </button>
             <div className="text-center text-sm text-slate-600 pt-1 font-medium">
-              Pejabat: 03-3396 4016 • USJ 1, Subang Jaya
+              Pejabat: 03-3396 4016 • Puncak Bestari, Bandar Puncak Alam
             </div>
           </div>
         </div>

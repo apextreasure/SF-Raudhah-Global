@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
 
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed pt-2 font-normal">
-              SF RAUDHAH GLOBAL ialah kontraktor kejuruteraan 100% milik Bumiputera yang beribu pejabat di Subang Jaya, Selangor. Beroperasi sejak 2016 (diperbadankan pada 2019), kami pakar dalam penyelesaian menyeluruh Elektrikal, Mekanikal & HVAC, ICT/ELV, dan Pengubahsuaian Bangunan komersial serta industri.
+              SF RAUDHAH GLOBAL ialah kontraktor kejuruteraan 100% milik Bumiputera yang beribu pejabat di Bandar Puncak Alam, Selangor. Beroperasi sejak 2016 (diperbadankan pada 2019), kami pakar dalam penyelesaian menyeluruh Elektrikal, Mekanikal & HVAC, ICT/ELV, dan Pengubahsuaian Bangunan komersial serta industri.
             </p>
 
             <div className="space-y-2 pt-3 text-sm sm:text-base text-slate-300 border-t border-slate-800">
@@ -169,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <div className="flex items-start gap-3">
                 <Mail className="w-6 h-6 text-cyan-400 shrink-0 mt-0.5" />
-                <div>
+                <div className="min-w-0 break-words">
                   <p className="text-white font-bold text-base">Emel Rasmi:</p>
                   <a
                     href={`mailto:${companyInfo.email}`}

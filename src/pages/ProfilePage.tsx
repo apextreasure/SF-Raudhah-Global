@@ -78,7 +78,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             <strong>SF RAUDHAH GLOBAL</strong> bermula sebagai sebuah entiti perniagaan milikan tunggal bernama <em>SF Raudhah Enterprise</em> yang diasaskan pada tahun 2016. Berikutan pertumbuhan pesat skop projek, kepercayaan klien korporat dan keperluan penyertaan tender komersial yang lebih luas, syarikat telah diperbadankan secara rasmi sebagai syarikat sendirian pada <strong>9 Disember 2019</strong> dengan nombor pendaftaran SSM <strong>201903332560 (003053424-U)</strong>.
           </p>
           <p className="text-slate-800 text-base sm:text-lg leading-relaxed font-normal">
-            Berpangkalan di <strong>Subang Jaya, Selangor</strong>, syarikat kami memiliki taraf <strong>100% Milik Bumiputera</strong>. Kami beroperasi merentasi pelbagai disiplin kejuruteraan dengan keupayaan menyeluruh merangkumi pendawaian voltan rendah, panel suis kawalan elektrik, sistem pendingin hawa komersial (HVAC), rangkaian rumah pam cecair, telekomunikasi gentian optik FTTH, sistem kamera ELV/CCTV, serta kerja pembinaan struktur keluli dan ubah suai fasiliti.
+            Berpangkalan di <strong>Bandar Puncak Alam, Selangor</strong>, syarikat kami memiliki taraf <strong>100% Milik Bumiputera</strong>. Kami beroperasi merentasi pelbagai disiplin kejuruteraan dengan keupayaan menyeluruh merangkumi pendawaian voltan rendah, panel suis kawalan elektrik, sistem pendingin hawa komersial (HVAC), rangkaian rumah pam cecair, telekomunikasi gentian optik FTTH, sistem kamera ELV/CCTV, serta kerja pembinaan struktur keluli dan ubah suai fasiliti.
           </p>
 
           <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3.5">
@@ -92,7 +92,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             </div>
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center col-span-2 sm:col-span-1">
               <span className="text-xs sm:text-sm text-slate-600 font-semibold block mb-1">Ibu Pejabat</span>
-              <span className="font-extrabold text-blue-700 text-base sm:text-lg">Subang Jaya</span>
+              <span className="font-extrabold text-blue-700 text-base sm:text-lg">Bandar Puncak Alam</span>
             </div>
           </div>
         </div>

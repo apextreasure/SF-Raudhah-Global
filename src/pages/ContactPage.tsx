@@ -313,19 +313,19 @@ export const ContactPage: React.FC = () => {
 
       </div>
 
-      {/* 3. PETA LOKASI PEJABAT (Google Maps Embed Subang Jaya USJ 1) */}
+      {/* 3. PETA LOKASI PEJABAT (Google Maps Embed Puncak Bestari) */}
       <section className="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
           <div>
             <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-              Lokasi Pejabat Operasi: USJ 1, Subang Jaya
+              Lokasi Pejabat Operasi: Puncak Bestari, Bandar Puncak Alam
             </h3>
             <p className="text-sm sm:text-base text-slate-700 mt-0.5">
-              No 33A, Jalan USJ 1/11, USJ 1, 47600 Subang Jaya, Selangor Darul Ehsan
+              {companyInfo.address}
             </p>
           </div>
           <a
-            href="https://maps.google.com/?q=Jalan+USJ+1/11+Subang+Jaya+Selangor"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyInfo.address)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm sm:text-base font-bold text-blue-700 hover:underline inline-flex items-center gap-1.5"
@@ -336,8 +336,8 @@ export const ContactPage: React.FC = () => {
 
         <div className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-slate-300 shadow-inner bg-slate-200">
           <iframe
-            title="Lokasi SF Raudhah Global Subang Jaya"
-            src="https://maps.google.com/maps?q=Jalan%20USJ%201%2F11%2C%2047600%20Subang%20Jaya%2C%20Selangor&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            title="Lokasi SF Raudhah Global Bandar Puncak Alam"
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(companyInfo.address)}&z=16&output=embed`}
             className="w-full h-full border-0"
             loading="lazy"
             allowFullScreen

@@ -5,7 +5,7 @@ export const companyInfo = {
   incorporationDate: "9 Disember 2019",
   foundedYear: 2016, // Bermula sebagai SF Raudhah Enterprise pada 2016
   ownership: "100% Milik Bumiputera",
-  address: "No 33A, Jalan USJ 1/11, USJ 1, 47600 Subang Jaya, Selangor Darul Ehsan",
+  address: "No. 1, Jalan Niaga Bestari 7, Puncak Bestari, 42300 Bandar Puncak Alam, Selangor Darul Ehsan",
   phones: [
     { label: "Panggilan & WhatsApp 1", number: "+60166000127", display: "+60 16-600 0127" },
     { label: "Panggilan & WhatsApp 2", number: "+601110820127", display: "+60 11-1082 0127" },

@@ -75,7 +75,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </span>
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/90 border border-slate-700 text-slate-200">
                   <MapPin className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span>Subang Jaya, Selangor</span>
+                  <span>Bandar Puncak Alam, Selangor</span>
                 </span>
               </div>
 
@@ -448,7 +448,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 7. CLOSING CTA BANNER */}
       <section id="closing-cta" className="max-w-7xl mx-auto px-4 sm:px-8 pb-8">
-        <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-slate-900 rounded-3xl p-8 sm:p-14 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+        <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-slate-900 rounded-3xl p-8 sm:p-14 text-white shadow-xl flex flex-col items-center justify-between gap-8 text-center">
           <div className="space-y-3.5 max-w-2xl">
             <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-emerald-300">
               Perbincangan Projek Tanpa Sebarang Kewajipan
