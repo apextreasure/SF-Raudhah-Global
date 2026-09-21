@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
 import { ProjectPhoto } from '../components/ProjectPhoto';
+import { OrganizationChart } from '../components/OrganizationChart';
 import {
-  Building2,
-  Users,
   Target,
   Eye,
   ShieldCheck,
-  Award,
-  Calendar,
   Search,
   CheckCircle2,
   Briefcase,
-  Layers,
-  ArrowRight,
-  Sparkles
+  ArrowRight
 } from 'lucide-react';
-import { companyInfo, leadershipData, organizationStructure, keyAchievements } from '../data/companyContent';
-import { rawClientsData, uniqueClients, DeduplicatedClient } from '../data/clients';
+import { companyInfo, leadershipData } from '../data/companyContent';
+import { rawClientsData, uniqueClients } from '../data/clients';
 
 interface ProfilePageProps {
   onOpenLightboxByFile: (file: string) => void;
@@ -76,7 +71,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             Pengalaman Luas Bermula Sejak 2016
           </h2>
           <p className="text-slate-800 text-base sm:text-lg leading-relaxed font-normal">
-            <strong>SF RAUDHAH GLOBAL</strong> bermula sebagai sebuah entiti perniagaan milikan tunggal bernama <em>SF Raudhah Enterprise</em> yang diasaskan pada tahun 2016. Berikutan pertumbuhan pesat skop projek, kepercayaan klien korporat dan keperluan penyertaan tender komersial yang lebih luas, syarikat telah diperbadankan secara rasmi sebagai syarikat sendirian pada <strong>9 Disember 2019</strong> dengan nombor pendaftaran SSM <strong>201903332560 (003053424-U)</strong>.
+            <strong>{companyInfo.name}</strong> ditubuhkan pada <strong>{companyInfo.foundedDate}</strong>, hasil buah fikiran Encik Fairus Ameer dan Puan Siti Zabedah. Perniagaan ini berstatus <strong>{companyInfo.businessType.toLowerCase()}</strong>, dengan tarikh mula berniaga dan pendaftaran SSM pada <strong>{companyInfo.registrationDate}</strong>, serta nombor pendaftaran <strong>{companyInfo.registrationNo}</strong>.
           </p>
           <p className="text-slate-800 text-base sm:text-lg leading-relaxed font-normal">
             Berpangkalan di <strong>Bandar Puncak Alam, Selangor</strong>, syarikat kami memiliki taraf <strong>100% Milik Bumiputera</strong>. Kami beroperasi merentasi pelbagai disiplin kejuruteraan dengan keupayaan menyeluruh merangkumi pendawaian voltan rendah, panel suis kawalan elektrik, sistem pendingin hawa komersial (HVAC), rangkaian rumah pam cecair, telekomunikasi gentian optik FTTH, sistem kamera ELV/CCTV, serta kerja pembinaan struktur keluli dan ubah suai fasiliti.
@@ -84,8 +79,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
 
           <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3.5">
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center">
-              <span className="text-xs sm:text-sm text-slate-600 font-semibold block mb-1">Pemerbadanan</span>
-              <span className="font-extrabold text-slate-900 text-base sm:text-lg">Disember 2019</span>
+              <span className="text-xs sm:text-sm text-slate-600 font-semibold block mb-1">Pendaftaran SSM</span>
+              <span className="font-extrabold text-slate-900 text-base sm:text-lg">{companyInfo.registrationDate}</span>
             </div>
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center">
               <span className="text-xs sm:text-sm text-slate-600 font-semibold block mb-1">Pemilikan</span>
@@ -155,7 +150,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             Kepimpinan Strategik
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900">
-            Pengasas & Barisan Pengarah
+            Pengasas & Kepimpinan
           </h2>
           <p className="text-slate-700 text-base sm:text-lg font-normal">
             Didorong oleh individu berwawasan dengan kepakaran operasi dan komitmen teknikal tinggi.
@@ -170,7 +165,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-700 to-slate-900 text-white font-extrabold text-xl flex items-center justify-center shadow-md">
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-gradient-to-br from-blue-700 to-slate-900 text-white font-extrabold text-xl flex items-center justify-center shadow-md">
                     {leader.initials}
                   </div>
                   <div>
@@ -192,59 +187,9 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
       </section>
 
-      {/* 5. CARTA ORGANISASI KORPORAT */}
-      <section className="bg-slate-50 rounded-3xl p-8 sm:p-12 border border-slate-200">
-        <div className="text-center max-w-2xl mx-auto space-y-2.5 mb-10">
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-700 bg-white px-3.5 py-1.5 rounded-full border border-slate-200">
-            Struktur Pengurusan
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900">
-            Carta Organisasi Syarikat
-          </h2>
-          <p className="text-slate-700 text-base sm:text-lg font-normal">
-            Rangkaian operasi tersusun mengikut bahagian kepakaran kejuruteraan bagi memastikan kawalan kualiti optimum.
-          </p>
-        </div>
+      <OrganizationChart />
 
-        {/* Tree Layout */}
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* Level 1: Lembaga Pengarah */}
-          <div className="bg-slate-900 text-white p-5 rounded-2xl text-center max-w-md mx-auto shadow-md border border-slate-800">
-            <span className="text-xs sm:text-sm uppercase text-slate-400 font-bold">Tadbir Urus</span>
-            <h4 className="text-lg sm:text-xl font-extrabold text-white mt-1">Lembaga Pengarah</h4>
-          </div>
-
-          <div className="w-0.5 h-6 bg-slate-300 mx-auto" />
-
-          {/* Level 2: Pengarah Urusan & Pengarah Operasi */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-            <div className="bg-blue-900 text-white p-5 rounded-2xl text-center shadow-sm border border-blue-800">
-              <span className="text-xs sm:text-sm uppercase text-blue-300 font-bold">Pengurusan Eksekutif</span>
-              <h4 className="text-base sm:text-lg font-extrabold text-white mt-1">Fakrul Redza Bin Fadzil</h4>
-              <p className="text-sm text-blue-200 font-medium">Pengarah Urusan (Managing Director)</p>
-            </div>
-            <div className="bg-blue-900 text-white p-5 rounded-2xl text-center shadow-sm border border-blue-800">
-              <span className="text-xs sm:text-sm uppercase text-blue-300 font-bold">Operasi & Pentadbiran</span>
-              <h4 className="text-base sm:text-lg font-extrabold text-white mt-1">Siti Syahirah Binti Kamisan</h4>
-              <p className="text-sm text-blue-200 font-medium">Pengarah Operasi & Kewangan</p>
-            </div>
-          </div>
-
-          <div className="w-0.5 h-6 bg-slate-300 mx-auto" />
-
-          {/* Level 3: Empat Bahagian Teknikal */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {organizationStructure[3].departments?.map((dept, i) => (
-              <div key={i} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs text-left space-y-1.5">
-                <h5 className="font-extrabold text-base text-slate-900">{dept.name}</h5>
-                <p className="text-sm text-slate-600 leading-relaxed font-normal">{dept.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. SENARAI KLIEN & RAKAN STRATEGIK (All 37 records + 26 deduplicated entities) */}
+      {/* 6. Printed client list; counts derived from PDF records. */}
       <section id="clients-section" className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
           <div>
@@ -255,12 +200,12 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               Klien & Rakan Korporat
             </h2>
             <p className="text-slate-700 text-base sm:text-lg mt-1 font-normal">
-              Merangkumi agensi kerajaan, GLC, syarikat multinasional swasta dan institusi pendidikan di Malaysia.
+              Senarai pelanggan seperti dicetak dalam profil syarikat Mei 2026, halaman 48–49. Entri berulang ialah kemunculan dalam senarai, bukan bilangan projek.
             </p>
           </div>
 
           {/* Toggle View: Deduplicated vs All 37 Records */}
-          <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start md:self-auto">
+          <div className="flex flex-wrap items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start md:self-auto">
             <button
               onClick={() => setClientTab('unique')}
               className={`px-4 py-2 rounded-xl text-sm sm:text-base font-bold transition-colors ${
@@ -269,7 +214,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   : 'text-slate-700 hover:text-slate-950'
               }`}
             >
-              Organisasi Unik (26)
+              Organisasi Unik ({uniqueClients.length})
             </button>
             <button
               onClick={() => setClientTab('all')}
@@ -279,7 +224,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   : 'text-slate-700 hover:text-slate-950'
               }`}
             >
-              Semua 37 Entri Cetakan
+              Semua {rawClientsData.length} Entri Cetakan
             </button>
           </div>
         </div>
@@ -341,9 +286,9 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 {client.count > 1 && (
                   <span
                     className="shrink-0 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-bold border border-blue-200"
-                    title={`${client.count} projek bersama`}
+                    title={`${client.count} kemunculan dalam senarai cetakan`}
                   >
-                    {client.count} Projek
+                    {client.count} Entri
                   </span>
                 )}
               </div>
@@ -382,7 +327,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
           onClick={onOpenWhatsAppQuote}
           className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base rounded-xl transition-colors shrink-0"
         >
-          <span>Hubungi Pengarah Urusan</span>
+          <span>Hubungi Pasukan Kami</span>
           <ArrowRight className="w-5 h-5" />
         </button>
       </section>

@@ -206,8 +206,8 @@ export const WhatsAppQuoteModal: React.FC<WhatsAppQuoteModalProps> = ({
                   className="text-blue-600 w-4 h-4"
                 />
                 <div>
-                  <span className="font-extrabold text-slate-900 block text-base">En. Fakrul Redza</span>
-                  <span className="text-slate-600 text-sm font-medium">+60 16-600 0127 (Pengarah Urusan)</span>
+                  <span className="font-extrabold text-slate-900 block text-base">Pertanyaan Utama</span>
+                  <span className="text-slate-600 text-sm font-medium">+60 16-600 0127 (WhatsApp)</span>
                 </div>
               </label>
               <label className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-blue-400 transition-colors">

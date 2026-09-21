@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
 
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed pt-2 font-normal">
-              SF RAUDHAH GLOBAL ialah kontraktor kejuruteraan 100% milik Bumiputera yang beribu pejabat di Bandar Puncak Alam, Selangor. Beroperasi sejak 2016 (diperbadankan pada 2019), kami pakar dalam penyelesaian menyeluruh Elektrikal, Mekanikal & HVAC, ICT/ELV, dan Pengubahsuaian Bangunan komersial serta industri.
+              SF RAUDHAH GLOBAL ialah kontraktor kejuruteraan 100% milik Bumiputera yang beribu pejabat di Bandar Puncak Alam, Selangor. Ditubuhkan pada {companyInfo.foundedDate} dan didaftarkan sebagai perniagaan milikan tunggal pada {companyInfo.registrationDate}, kami pakar dalam penyelesaian menyeluruh Elektrikal, Mekanikal & HVAC, ICT/ELV, dan Pengubahsuaian Bangunan komersial serta industri.
             </p>
 
             <div className="space-y-2 pt-3 text-sm sm:text-base text-slate-300 border-t border-slate-800">
@@ -155,7 +155,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <p className="text-white font-bold text-base">Talian Perhubungan:</p>
                   <div className="text-slate-200 text-sm sm:text-base space-y-1">
                     <a href="tel:+60166000127" className="hover:text-cyan-300 transition-colors block font-semibold text-emerald-300">
-                      +60 16-600 0127 (En. Fakrul Redza)
+                      +60 16-600 0127 (Pertanyaan)
                     </a>
                     <a href="tel:+601110820127" className="hover:text-cyan-300 transition-colors block font-semibold text-slate-300">
                       +60 11-1082 0127 (Operasi)
@@ -180,15 +180,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* Bank Details for official transaction reference */}
-              <div className="bg-slate-900 rounded-xl p-4 border border-slate-800 text-sm text-slate-300 space-y-1">
-                <span className="font-bold text-white block text-sm sm:text-base">Rujukan Perbankan Korporat:</span>
-                <div className="text-slate-300 font-medium">{companyInfo.bankDetails.bank} ({companyInfo.bankDetails.branch})</div>
-                <div className="font-mono text-cyan-300 font-extrabold text-base tracking-wider">
-                  No Akaun: {companyInfo.bankDetails.accountNo}
-                </div>
-                <div className="text-xs sm:text-sm text-slate-400">{companyInfo.bankDetails.accountName}</div>
-              </div>
+
             </div>
           </div>
 

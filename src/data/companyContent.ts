@@ -1,9 +1,12 @@
 export const companyInfo = {
   name: "SF RAUDHAH GLOBAL",
   tagline: "Penyelesaian Kejuruteraan Mekanikal, Elektrikal & Ubah Suai Bangunan Bersepadu",
-  registrationNo: "201903332560 (003053424-U)",
-  incorporationDate: "9 Disember 2019",
-  foundedYear: 2016, // Bermula sebagai SF Raudhah Enterprise pada 2016
+  // Company profile, May 2026, pages 4 and 7. Founding and registration are distinct.
+  registrationNo: "201903331960 (SA0535460-D)",
+  registrationDate: "29 November 2019",
+  foundedDate: "25 Julai 2016",
+  foundedYear: 2016,
+  businessType: "Milikan tunggal",
   ownership: "100% Milik Bumiputera",
   address: "No. 1, Jalan Niaga Bestari 7, Puncak Bestari, 42300 Bandar Puncak Alam, Selangor Darul Ehsan",
   phones: [
@@ -14,14 +17,10 @@ export const companyInfo = {
   whatsappPrimary: "+60166000127",
   email: "sfraudhahglobal@gmail.com",
   website: "www.sfraudhahglobal.com",
-  bankDetails: {
-    bank: "Maybank Islamic Berhad",
-    branch: "Subang Jaya",
-    accountNo: "5622 6355 5860",
-    accountName: "SF RAUDHAH GLOBAL"
-  },
-  mission: "Menyediakan perkhidmatan kejuruteraan mekanikal, elektrikal, sivil dan ICT yang berintegriti tinggi, menepati piawaian keselamatan industri, serta memberikan nilai optimum dan ketepatan masa bagi setiap projek pelanggan.",
-  vision: "Menjadi kontraktor kejuruteraan Bumiputera pilihan utama di Malaysia yang dikenali kerana kebolehpercayaan teknikal, kualiti mutu kerja yang tinggi, serta komitmen terhadap keselamatan tanpa kompromi.",
+  // Banking details withheld until the owner verifies conflicting sources.
+  // Verbatim wording from page 5; PDF line wraps removed.
+  mission: "Sedia berkhidmat, berdaya maju dan berdaya saing dalam bidang yang kami ceburi,menyediakan perkhidmatan yang berkualiti dan fleksibel bagi mencapai tahap kepuasan pelanggan kami.",
+  vision: "Ingin membawa nama dan produk syarikat kami lebih maju kedepan agar menjadi sebuah syarikat yang terulung dan dinamik menerusi pakatan berpasukan yang teguh dan mantap.",
   objectives: [
     "Menyampaikan setiap projek mengikut jadual yang dipersetujui tanpa menjejaskan piawaian kualiti.",
     "Mematuhi piawaian Keselamatan, Kesihatan dan Alam Sekitar (HSE) secara ketat di semua tapak kerja.",
@@ -39,33 +38,34 @@ export const companyInfo = {
   ]
 };
 
-export const leadershipData = [
-  {
-    name: "FAKRUL REDZA BIN FADZIL",
-    role: "Pengarah Urusan (Managing Director)",
-    description: "Mempunyai rekod kepimpinan dan pengalaman komprehensif dalam pengurusan projek kejuruteraan elektrik, mekanikal serta infrastruktur industri. Bertanggungjawab menetapkan hala tuju strategik, standard kualiti teknikal dan perhubungan klien korporat.",
-    initials: "FR"
-  },
-  {
-    name: "SITI SYAHIRAH BINTI KAMISAN",
-    role: "Pengarah Operasi & Pentadbiran",
-    description: "Mengetuai kelancaran operasi perniagaan harian, tadbir urus kewangan, kepatuhan perundangan kontrak, pengurusan logistik bekalan bahan dan sumber tenaga kerja syarikat.",
-    initials: "SS"
-  }
+// Names, roles and reporting lines transcribed visually from PDF page 9.
+export const organizationStructure = [
+  { id: 'director', role: 'Pengarah Urusan', name: 'Pn Siti Zabedah Binti Abdul Wahab', reportsTo: null },
+  { id: 'manager', role: 'Pengurus', name: 'En Mohamed Fairus Bin K.M Ameer Sultan', reportsTo: 'director' },
+  { id: 'assistant', role: 'Penolong Pengurus', name: 'Mohd Ashraf Bin Johari', reportsTo: 'manager' },
+  { id: 'admin', role: 'Pembantu Pentadbiran / Sumber Manusia', name: 'Pn Salwani Hakiim Binti Rahim', reportsTo: 'manager' },
+  { id: 'engineer', role: 'Jurutera', name: 'En Kamaludin Bin Abdillah', reportsTo: 'assistant' },
+  { id: 'supervisor', role: 'Penyelia', name: 'Saravana a/l Murugese', reportsTo: 'assistant' },
+  { id: 'technician', role: 'Juruteknik Elektrikal', name: 'Muhammad Aidil Fikri Bin Mohamad', reportsTo: 'supervisor' },
+  { id: 'worker-1', role: 'General Worker', name: 'Prakash a/l R.Murugese', reportsTo: 'technician' },
+  { id: 'worker-2', role: 'General Worker', name: 'Balajhee a/l Periasamy', reportsTo: 'technician' },
+  { id: 'worker-3', role: 'General Worker', name: 'Tamilarasan a/l Balasegaran', reportsTo: 'technician' },
+  { id: 'worker-4', role: 'General Worker', name: 'Karthik a/l Ragunathan', reportsTo: 'technician' }
 ];
 
-export const organizationStructure = [
-  { level: 1, title: "Lembaga Pengarah", subtitle: "Tadbir Urus Korporat & Strategi Syarikat" },
-  { level: 2, title: "Pengarah Urusan", subtitle: "Fakrul Redza Bin Fadzil — Pengurusan Eksekutif & Teknikal" },
-  { level: 3, title: "Pengarah Operasi & Pentadbiran", subtitle: "Siti Syahirah Binti Kamisan — Operasi & Kewangan" },
+// Founders identified on page 4; current titles are those printed on page 9.
+export const leadershipData = [
   {
-    level: 4,
-    departments: [
-      { name: "Bahagian Kejuruteraan Elektrik", desc: "Sistem Kuasa LV, Papan Suis MSB/DB, Pendawaian & Pencahayaan" },
-      { name: "Bahagian Kejuruteraan Mekanikal", desc: "Sistem HVAC, Saluran Paip Industri, Sistem Pam & Manifold" },
-      { name: "Bahagian Kejuruteraan Awam & Sivil", desc: "Fabrikasi Logam, Ubah Suai Dalaman, Perancah & Pembinaan" },
-      { name: "Bahagian ICT & Sistem ELV", desc: "Gentian Optik FTTH, Kabel Berstruktur, CCTV & Keselamatan" }
-    ]
+    name: organizationStructure[0].name,
+    role: organizationStructure[0].role,
+    description: 'Puan Siti Zabedah merupakan pengasas bersama SF Raudhah Global, yang ditubuhkan pada 25 Julai 2016.',
+    initials: 'SZ'
+  },
+  {
+    name: organizationStructure[1].name,
+    role: organizationStructure[1].role,
+    description: 'Encik Fairus Ameer merupakan pengasas bersama SF Raudhah Global. Penubuhan perniagaan ini adalah hasil buah fikiran beliau dan Puan Siti Zabedah.',
+    initials: 'MF'
   }
 ];
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProjectPhoto } from '../components/ProjectPhoto';
+import { rawClientsData } from '../data/clients';
 import {
   Zap,
   Wrench,
@@ -44,6 +45,15 @@ export const HomePage: React.FC<HomePageProps> = ({
         id="hero-section"
         className="relative overflow-hidden bg-slate-950 text-white pt-10 sm:pt-16 pb-20 sm:pb-28"
       >
+        {/* Original warehouse photograph restored behind the ambient gradient. */}
+        <div className="absolute inset-0 z-0 opacity-25 mix-blend-luminosity pointer-events-none" aria-hidden="true">
+          <img
+            data-hero-background
+            src="/assets/projects/p33-04-warehouse-cable-tray.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
         {/* Ambient gradients with royal blue, teal and cyan */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-blue-950/80 z-0" />
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -90,7 +100,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
                 <div className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>37+ Rekod Pelanggan</span>
+                  <span>{rawClientsData.length} Entri Pelanggan Cetakan</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
@@ -153,9 +163,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="text-xs sm:text-sm text-slate-600 mt-1">Komersial, industri & awam</div>
           </div>
           <div className="glass-card p-6 sm:p-7 rounded-2xl text-center border border-slate-200 shadow-xs hover:border-blue-300 transition-colors">
-            <div className="text-4xl sm:text-5xl font-black text-teal-700">37+</div>
-            <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">Rekod Pelanggan</div>
-            <div className="text-xs sm:text-sm text-slate-600 mt-1">Agensi kerajaan & syarikat swasta</div>
+            <div className="text-4xl sm:text-5xl font-black text-teal-700">{rawClientsData.length}</div>
+            <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">Entri Pelanggan Cetakan</div>
+            <div className="text-xs sm:text-sm text-slate-600 mt-1">Profil syarikat Mei 2026</div>
           </div>
           <div className="glass-card p-6 sm:p-7 rounded-2xl text-center border border-slate-200 shadow-xs hover:border-blue-300 transition-colors">
             <div className="text-4xl sm:text-5xl font-black text-emerald-700">100%</div>

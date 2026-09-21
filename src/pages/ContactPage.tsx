@@ -8,9 +8,7 @@ import {
   Building,
   ShieldCheck,
   Send,
-  CheckCircle2,
-  Copy,
-  Check
+  CheckCircle2
 } from 'lucide-react';
 import { companyInfo } from '../data/companyContent';
 
@@ -21,7 +19,7 @@ export const ContactPage: React.FC = () => {
   const [location, setLocation] = useState('');
   const [service, setService] = useState('Kejuruteraan Elektrik');
   const [notes, setNotes] = useState('');
-  const [copiedBank, setCopiedBank] = useState(false);
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,11 +42,6 @@ export const ContactPage: React.FC = () => {
     window.open(waUrl, '_blank');
   };
 
-  const handleCopyBank = () => {
-    navigator.clipboard.writeText(companyInfo.bankDetails.accountNo);
-    setCopiedBank(true);
-    setTimeout(() => setCopiedBank(false), 2500);
-  };
 
   return (
     <div id="contact-page" className="max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-12 sm:space-y-16">
@@ -84,7 +77,7 @@ export const ContactPage: React.FC = () => {
 
             <div className="space-y-4 text-base">
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
-                <span className="text-xs sm:text-sm text-slate-600 font-semibold block">Pengarah Urusan:</span>
+                <span className="text-xs sm:text-sm text-slate-600 font-semibold block">Pertanyaan Utama:</span>
                 <a
                   href="tel:+60166000127"
                   className="text-lg sm:text-xl font-extrabold text-slate-900 hover:text-blue-700 flex items-center justify-between mt-1"
@@ -92,7 +85,7 @@ export const ContactPage: React.FC = () => {
                   <span>+60 16-600 0127</span>
                   <span className="text-xs sm:text-sm px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-lg">WhatsApp / Panggilan</span>
                 </a>
-                <span className="text-xs sm:text-sm text-slate-600 font-medium block mt-1">En. Fakrul Redza Bin Fadzil</span>
+                <span className="text-xs sm:text-sm text-slate-600 font-medium block mt-1">Pasukan SF Raudhah Global</span>
               </div>
 
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
@@ -165,28 +158,16 @@ export const ContactPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Corporate Bank & SSM Box */}
+          {/* Verified registration only; banking details await owner verification. */}
           <div className="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
             <span className="text-xs sm:text-sm uppercase tracking-wider text-cyan-400 font-extrabold flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-cyan-400" />
-              Pendaftaran & Perbankan Sah
+              Pendaftaran Perniagaan
             </span>
             <div className="text-sm sm:text-base text-slate-300 space-y-2">
               <div>No. Pendaftaran SSM: <strong className="text-white font-mono text-base">{companyInfo.registrationNo}</strong></div>
-              <div>Bank: <strong className="text-white">{companyInfo.bankDetails.bank}</strong></div>
-              <div>Cawangan: {companyInfo.bankDetails.branch}</div>
-              <div className="flex items-center justify-between pt-1">
-                <div>No. Akaun: <strong className="text-cyan-300 font-mono text-base sm:text-lg">{companyInfo.bankDetails.accountNo}</strong></div>
-                <button
-                  onClick={handleCopyBank}
-                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold"
-                  title="Salin Nombor Akaun"
-                >
-                  {copiedBank ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                  <span>{copiedBank ? 'Disalin' : 'Salin'}</span>
-                </button>
-              </div>
-              <div className="text-xs sm:text-sm text-slate-400 pt-1">Nama Akaun: {companyInfo.bankDetails.accountName}</div>
+              <div>Status: {companyInfo.businessType}</div>
+              <div>Tarikh Pendaftaran: {companyInfo.registrationDate}</div>
             </div>
           </div>
 
