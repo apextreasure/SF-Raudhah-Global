@@ -1,0 +1,6 @@
+{
+  "name": "SF Raudhah Global",
+  "description": "Penyelesaian Kejuruteraan Mekanikal, Elektrikal & Ubah Suai Bangunan - SF Raudhah Global, Subang Jaya",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
