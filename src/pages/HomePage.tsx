@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProjectPhoto } from '../components/ProjectPhoto';
 import {
   Zap,
   Wrench,
@@ -43,16 +44,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         id="hero-section"
         className="relative overflow-hidden bg-slate-950 text-white pt-10 sm:pt-16 pb-20 sm:pb-28"
       >
-        {/* Background photo: p33-04-warehouse-cable-tray.jpg */}
-        <div className="absolute inset-0 z-0 opacity-25 mix-blend-luminosity">
-          <img
-            src="/assets/projects/p33-04-warehouse-cable-tray.jpg"
-            alt="Pemasangan dulang kabel gudang industri berkapasiti tinggi"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
         {/* Ambient gradients with royal blue, teal and cyan */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-blue-950/80 z-0" />
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -62,7 +53,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
             {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-7 text-left">
+            <div className="lg:col-span-6 space-y-7 text-left">
               {/* Trust Badges */}
               <div className="flex flex-wrap items-center gap-2.5 text-sm sm:text-base font-semibold">
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-900/70 border border-blue-400/40 text-blue-200">
@@ -128,45 +119,23 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
             </div>
 
-            {/* Right Card / Visual Box (Hero Photo card: p33-04) */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden glass-card-dark p-4 sm:p-5 shadow-2xl border border-slate-700/80">
-                {/* Photo Display with Click to Lightbox */}
-                <div
-                  onClick={() => onOpenLightboxByFile('assets/projects/p33-04-warehouse-cable-tray.jpg')}
-                  className="group relative h-72 sm:h-88 w-full rounded-xl overflow-hidden bg-slate-900 cursor-pointer"
-                  title="Klik untuk lihat paparan penuh"
-                >
-                  <img
-                    src="/assets/projects/p33-04-warehouse-cable-tray.jpg"
-                    alt="Pemasangan dulang kabel gudang industri"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 text-left">
-                    <span className="px-3 py-1 rounded bg-blue-600/90 text-white text-xs sm:text-sm font-bold uppercase tracking-wider">
-                      Pepasangan Industri Sebenar
-                    </span>
-                    <p className="text-white font-bold text-base sm:text-lg mt-1.5 leading-snug">
-                      Sistem Dulang Kabel & Laluan Kuasa Gudang Industri
-                    </p>
-                    <p className="text-slate-200 text-xs sm:text-sm mt-1 leading-relaxed">
-                      Ketelitian pendawaian voltan rendah mengikut spesifikasi piawaian SIRIM & Suruhanjaya Tenaga.
-                    </p>
-                  </div>
+            <div className="lg:col-span-6 min-w-0">
+              <ProjectPhoto
+                src="/assets/projects/p33-04-warehouse-cable-tray.jpg"
+                title="Sistem Dulang Kabel & Laluan Kuasa Gudang Industri"
+                label="Pepasangan industri · Foto projek"
+                variant="hero"
+                eager
+                onOpen={onOpenLightboxByFile}
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 text-sm">
+                <div className="bg-slate-900 p-4 rounded-xl border border-blue-900">
+                  <span className="text-slate-300 block">Kategori Kerja</span>
+                  <span className="text-white font-bold">M&E, ELV & Sivil</span>
                 </div>
-
-                {/* Micro Metric Banner */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3.5 pt-3.5 border-t border-slate-800 text-sm">
-                  <div className="bg-slate-900/70 p-3 rounded-xl border border-slate-800">
-                    <span className="text-slate-400 block text-xs">Kategori Kerja</span>
-                    <span className="text-white font-bold text-sm sm:text-base">M&E, ELV & Sivil</span>
-                  </div>
-                  <div className="bg-slate-900/70 p-3 rounded-xl border border-slate-800">
-                    <span className="text-slate-400 block text-xs">Kawasan Operasi</span>
-                    <span className="text-cyan-300 font-bold text-sm sm:text-base">Seluruh Semenanjung</span>
-                  </div>
+                <div className="bg-slate-900 p-4 rounded-xl border border-blue-900">
+                  <span className="text-slate-300 block">Kawasan Operasi</span>
+                  <span className="text-cyan-300 font-bold">Seluruh Semenanjung</span>
                 </div>
               </div>
             </div>
@@ -304,24 +273,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                 key={idx}
                 className="group bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-blue-500 transition-all duration-300"
               >
-                {/* Photo thumbnail */}
-                <div
-                  onClick={() => onOpenLightboxByFile(item.image.replace(/^\//, ''))}
-                  className="relative h-56 sm:h-64 w-full overflow-hidden cursor-pointer bg-slate-900"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
-                  <div className="absolute top-3.5 left-3.5">
-                    <span className="px-3 py-1 rounded-full bg-blue-600/90 text-white text-xs sm:text-sm font-bold">
-                      {item.category}
-                    </span>
-                  </div>
-                </div>
+                <ProjectPhoto
+                  src={item.image}
+                  label={item.category}
+                  variant="featured"
+                  onOpen={onOpenLightboxByFile}
+                />
 
                 {/* Content */}
                 <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
@@ -329,7 +286,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-400 mt-2 flex items-center gap-1.5">
+                    <p className="text-sm sm:text-base text-slate-300 mt-2 flex flex-wrap items-center gap-1.5">
                       <MapPin className="w-4 h-4 text-blue-400 shrink-0" />
                       <span>{item.location}</span> • <span className="text-slate-200 font-semibold">{item.client}</span>
                     </p>

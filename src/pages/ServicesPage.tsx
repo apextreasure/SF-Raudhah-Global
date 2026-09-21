@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ProjectPhoto } from '../components/ProjectPhoto';
 import {
   Zap,
   Wrench,
@@ -113,8 +114,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         {/* Two-Column Details & Visual */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Scope & Features List (7 cols) */}
-          <div className="lg:col-span-7 space-y-7">
+          {/* Scope & features */}
+          <div className="lg:col-span-6 space-y-7">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
               {currentService.shortDesc}
             </p>
@@ -153,86 +154,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Visual Photo or ICT Diagram (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
-            {currentService.heroImage ? (
-              <div className="space-y-3">
-                <div
-                  onClick={() => onOpenLightboxByFile(currentService.heroImage!.replace(/^\//, ''))}
-                  className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md cursor-pointer h-72 sm:h-96"
-                  title="Klik untuk buka paparan penuh"
-                >
-                  <img
-                    src={currentService.heroImage}
-                    alt={currentService.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 text-left text-white">
-                    <span className="px-3 py-1 rounded bg-blue-600 text-xs font-extrabold uppercase">
-                      Foto Tapak Sebenar
-                    </span>
-                    <p className="text-sm sm:text-base font-bold mt-1.5 leading-snug">
-                      {currentService.title === 'Kejuruteraan Elektrik'
-                        ? 'Penarikan Pendawaian Kuasa Industri (p34-02)'
-                        : currentService.title === 'Kejuruteraan Mekanikal & HVAC'
-                        ? 'Sistem Rumah Pam Industri & Manifold Tekanan (p36-05)'
-                        : 'Fabrikasi Struktur Logam & Besi (p33-01)'}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-xs sm:text-sm text-slate-600 italic text-center font-medium">
-                  *Semua gambar projek yang dipaparkan adalah rekod pelaksanaan sebenar syarikat.
-                </p>
-              </div>
-            ) : (
-              /* Dedicated ICT & ELV schema illustration since prompt stipulates icons/diagrams for ICT */
-              <div className="bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 space-y-6">
-                <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-                  <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-                    <Cpu className="w-7 h-7" />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-white text-lg">Infrastruktur ICT & ELV</h4>
-                    <span className="text-sm text-cyan-400 font-mono font-semibold">Skema Sistem Rangkaian</span>
-                  </div>
-                </div>
-
-                <div className="space-y-3.5 text-sm sm:text-base">
-                  <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-3">
-                    <Wifi className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-bold text-white block">Gentian Optik FTTH</span>
-                      <span className="text-slate-300 font-normal">Pemasangan, splicing dan pengujian OTDR kabel gentian optik kediaman & komersial.</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-3">
-                    <Layers className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-bold text-white block">Kabel Berstruktur Cat6/Cat6A</span>
-                      <span className="text-slate-300 font-normal">Pemasangan rak pelayan (server rack), panel patch dan pengesahan kependawaian.</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-3">
-                    <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-bold text-white block">Kamera Litar Tertutup (CCTV) & ELV</span>
-                      <span className="text-slate-300 font-normal">Sistem kamera pengawasan definisi tinggi bagi stadium, pusat latihan dan premis kargo.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-blue-950/80 border border-blue-900/60 flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                  <Info className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                  <span>
-                    Nota Integriti: Selaras dengan polisi ketelusan kami, bahagian ICT menggunakan skema ikon tepat kerana tiada foto khusus yang disahkan dalam buku profil asal.
-                  </span>
-                </div>
-              </div>
-            )}
+          {/* Original service photograph with caption below */}
+          <div className="lg:col-span-6 min-w-0 space-y-4">
+            <ProjectPhoto
+              src={currentService.heroImage}
+              label={`${currentService.title} · Foto projek`}
+              variant="service"
+              onOpen={onOpenLightboxByFile}
+            />
 
             {/* Quick Contact Box for this Service */}
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-sm sm:text-base space-y-3">

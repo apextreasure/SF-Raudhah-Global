@@ -170,7 +170,7 @@ export const detailedServices = [
     title: "ICT & Sistem Ekstra Rendah (ELV)",
     slug: "ict",
     shortDesc: "Infrastruktur telekomunikasi gentian optik FTTH, rangkaian kabel berstruktur, kamera litar tertutup (CCTV) dan keselamatan premis.",
-    heroImage: null, // As specified in prompt, ICT uses crisp icons / system schematics because no confirmed dedicated photo exists in dataset
+    heroImage: "/assets/projects/p34-04-metering-equipment.jpg", // Original CCTV monitor photo; verified in the gallery asset map.
     features: [
       "Pemasangan & Pengujian Kabel Gentian Optik (FTTH Drop Cable Deployment)",
       "Kabel Berstruktur Rangkaian Dalaman (Structured Cabling Cat6/Cat6A)",

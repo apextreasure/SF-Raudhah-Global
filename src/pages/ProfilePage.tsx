@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ProjectPhoto } from '../components/ProjectPhoto';
 import {
   Building2,
   Users,
@@ -67,7 +68,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
 
       {/* 2. LATAR BELAKANG & GAMBAR JURUTEKNIK KESELAMATAN (p31-03) */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div className="lg:col-span-7 space-y-6 text-left">
+        <div className="lg:col-span-6 space-y-6 text-left">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
             Latar Belakang & Sejarah Penubuhan
           </span>
@@ -98,33 +99,14 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
 
         {/* Dedicated photo p31-03-technicians-elevated-platform.jpg */}
-        <div className="lg:col-span-5">
-          <div className="relative rounded-2xl overflow-hidden glass-card p-3 shadow-lg border border-slate-200">
-            <div
-              onClick={() => onOpenLightboxByFile('assets/projects/p31-03-technicians-elevated-platform.jpg')}
-              className="group relative h-80 sm:h-96 w-full rounded-xl overflow-hidden cursor-pointer bg-slate-900"
-              title="Klik untuk lihat paparan penuh juruteknik di platform angkat"
-            >
-              <img
-                src="/assets/projects/p31-03-technicians-elevated-platform.jpg"
-                alt="Juruteknik bertugas di atas platform angkat hidraulik"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-left">
-                <span className="px-2.5 py-1 rounded bg-emerald-600 text-white text-xs font-bold">
-                  Keselamatan di Tapak Kerja (HSE)
-                </span>
-                <p className="text-white font-extrabold text-base sm:text-lg mt-1.5 leading-snug">
-                  Operasi Platform Angkat & Pasukan Mahir
-                </p>
-                <p className="text-slate-200 text-xs sm:text-sm mt-1 leading-relaxed">
-                  Juruteknik bertauliah melaksanakan kerja pendawaian dan sokongan overhead dengan pematuhan keselamatan penuh.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="lg:col-span-6 min-w-0">
+          <ProjectPhoto
+            src="/assets/projects/p31-03-technicians-elevated-platform.jpg"
+            title="Juruteknik di Platform Angkat"
+            label="Pasukan di tapak · Foto projek"
+            variant="profile"
+            onOpen={onOpenLightboxByFile}
+          />
         </div>
       </section>
 
