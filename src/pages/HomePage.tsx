@@ -291,7 +291,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Sorotan Kerja Kami
               </h2>
               <p className="text-slate-300 text-base sm:text-xl mt-2 max-w-2xl font-normal">
-                Pencahayaan seni bina, kemudahan elektrik dan pemasangan dulang kabel di tapak industri.
+                Pencahayaan seni bina, pemasangan penyaman udara dan kerja fabrikasi logam di tapak.
               </p>
             </div>
             <button
@@ -304,7 +304,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {['p35-02-architectural-lighting.jpg', 'p31-04-warehouse-installation.jpg', 'p33-04-warehouse-cable-tray.jpg'].map(file => imageMapData.find(photo => photo.file === `assets/projects/${file}`)!).map((item, idx) => (
+            {['p35-02-architectural-lighting.jpg', 'p33-02-outdoor-air-conditioning.jpg', 'p33-01-metal-fabrication.jpg'].map(file => imageMapData.find(photo => photo.file === `assets/projects/${file}`)!).map((item, idx) => (
               <div
                 key={idx}
                 className="group bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-blue-500 transition-all duration-300"
