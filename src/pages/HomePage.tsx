@@ -131,14 +131,39 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             <div className="lg:col-span-6 min-w-0">
-              <ProjectPhoto
-                src="/assets/projects/p33-04-warehouse-cable-tray.jpg"
-                title="Sistem Dulang Kabel & Laluan Kuasa Gudang Industri"
-                label="Pepasangan industri · Foto projek"
-                variant="hero"
-                eager
-                onOpen={onOpenLightboxByFile}
-              />
+              <figure className="project-photo project-photo--hero" data-hero-illustration>
+                <a
+                  href="/assets/illustrations/warehouse-hero-1536.webp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-photo__open block"
+                  aria-label="Lihat ilustrasi gudang penuh (tab baharu)"
+                >
+                  <img
+                    src="/assets/illustrations/warehouse-hero-1536.webp"
+                    srcSet="/assets/illustrations/warehouse-hero-768.webp 768w, /assets/illustrations/warehouse-hero-1536.webp 1536w"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    width={1536}
+                    height={864}
+                    fetchPriority="high"
+                    decoding="async"
+                    alt="Ilustrasi AI pemasangan dulang kabel dan kabel kuasa di gudang industri, dengan platform kerja hijau dan jentera angkat jingga."
+                    className="project-photo__image"
+                  />
+                </a>
+                <figcaption className="project-photo__caption">
+                  <span className="project-photo__label">Pepasangan industri · Ilustrasi AI</span>
+                  <p className="project-photo__title">Sistem Dulang Kabel & Laluan Kuasa Gudang Industri</p>
+                  <span className="project-photo__hint">Visual konsep berasaskan foto tapak; bukan foto projek sebenar.</span>
+                  <button
+                    type="button"
+                    onClick={() => onOpenLightboxByFile('assets/projects/p33-04-warehouse-cable-tray.jpg')}
+                    className="mt-3 text-sm font-bold text-cyan-300 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300"
+                  >
+                    Lihat foto tapak asal
+                  </button>
+                </figcaption>
+              </figure>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 text-sm">
                 <div className="bg-slate-900 p-4 rounded-xl border border-blue-900">
                   <span className="text-slate-300 block">Kategori Kerja</span>
