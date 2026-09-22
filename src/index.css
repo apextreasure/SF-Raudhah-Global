@@ -79,8 +79,11 @@
   filter: brightness(1.025) contrast(1.025);
 }
 
+/* Consistent landscape thumbnails; the lightbox retains the full original. */
 .project-photo--featured .project-photo__image {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
 }
 
 .project-photo--hero .project-photo__image,
