@@ -52,11 +52,11 @@ export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p30-04-illuminated-walkway.jpg",
     page: 30,
-    alt_ms: "Laluan pejalan kaki berlampu projek Saloma Link",
+    alt_ms: "Laluan pejalan kaki dengan pencahayaan seni bina",
     category: "elektrikal",
     placements: ["portfolio", "electrical"],
     dimensions: { width: 735, height: 709 },
-    featuredTitle: "Pencahayaan Laluan Pejalan Kaki Saloma Link"
+    featuredTitle: "Pencahayaan Laluan Pejalan Kaki"
   },
   {
     file: "assets/projects/p30-05-elevated-walkway-construction.jpg",
@@ -295,16 +295,16 @@ export const imageMapData: ImageMapItem[] = [
   {
     file: "assets/projects/p35-02-architectural-lighting.jpg",
     page: 35,
-    alt_ms: "Pencahayaan seni bina moden ikonik di Saloma Link Kuala Lumpur",
+    alt_ms: "Pencahayaan berwarna pada struktur jejantas pejalan kaki",
     category: "elektrikal",
     placements: ["featured", "portfolio", "electrical"],
     dimensions: { width: 905, height: 649 },
-    featuredTitle: "Pencahayaan Seni Bina Ikonik Saloma Link KL"
+    featuredTitle: "Pencahayaan Seni Bina Jejantas"
   },
   {
     file: "assets/projects/p35-03-warehouse-cable-tray-repeat.jpg",
     page: 35,
-    alt_ms: "Dulang kabel gudang industri (cetakan ulang buku profil)",
+    alt_ms: "Dulang kabel di ruang gudang industri",
     category: "elektrikal",
     placements: ["portfolio"],
     dimensions: { width: 905, height: 565 },

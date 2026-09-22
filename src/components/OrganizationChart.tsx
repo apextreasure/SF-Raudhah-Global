@@ -10,7 +10,7 @@ export function OrganizationChart() {
       <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
         <span className="text-sm font-bold uppercase tracking-wider text-blue-700">Struktur Pengurusan</span>
         <h2 id="organization-heading" className="text-2xl sm:text-4xl font-extrabold text-slate-900">Carta Organisasi Syarikat</h2>
-        <p className="text-base text-slate-700">Barisan pengurusan dan tenaga kerja seperti dalam profil syarikat Mei 2026, halaman 9.</p>
+        <p className="text-base text-slate-700">Kenali barisan pengurusan dan tenaga kerja kami.</p>
       </div>
       <ol className="org-grid" aria-label="Hierarki organisasi">
         {organizationStructure.map((person, index) => {

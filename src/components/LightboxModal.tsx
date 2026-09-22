@@ -122,7 +122,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             <p className="mt-1 text-sm sm:text-base leading-relaxed text-slate-300">{currentImage.alt_ms}</p>
           </div>
           <div className="mt-3 flex items-center justify-between gap-3">
-            <p className="text-xs sm:text-sm text-slate-400">Muka surat profil {currentImage.page}<span className="hidden sm:inline"> · Gunakan kekunci ← → untuk foto, Esc untuk tutup</span></p>
+            <p className="text-xs sm:text-sm text-slate-400">Gunakan kekunci ← → untuk foto, Esc untuk tutup</p>
             <div className="flex shrink-0 gap-2">
               <button type="button" onClick={() => navigate(-1)} disabled={gallery.length < 2} className={controlClass} aria-label="Foto sebelumnya">
                 <ChevronLeft className="h-6 w-6" aria-hidden="true" />

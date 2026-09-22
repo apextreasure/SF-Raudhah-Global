@@ -11,7 +11,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { companyInfo, leadershipData } from '../data/companyContent';
-import { rawClientsData, uniqueClients } from '../data/clients';
+import { uniqueClients } from '../data/clients';
 
 interface ProfilePageProps {
   onOpenLightboxByFile: (file: string) => void;
@@ -22,7 +22,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   onOpenLightboxByFile,
   onOpenWhatsAppQuote
 }) => {
-  const [clientTab, setClientTab] = useState<'unique' | 'all'>('unique');
   const [clientCategory, setClientCategory] = useState<string>('semua');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -34,12 +33,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
-  });
-
-  const filteredRawClients = rawClientsData.filter((client) => {
-    return client.name_as_printed
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
   });
 
   return (
@@ -200,38 +193,16 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               Klien & Rakan Korporat
             </h2>
             <p className="text-slate-700 text-base sm:text-lg mt-1 font-normal">
-              Senarai pelanggan seperti dicetak dalam profil syarikat Mei 2026, halaman 48–49. Entri berulang ialah kemunculan dalam senarai, bukan bilangan projek.
+              Kenali klien dan rakan kerjasama kami merentas sektor korporat, kerajaan, pendidikan dan institusi.
             </p>
           </div>
 
-          {/* Toggle View: Deduplicated vs All 37 Records */}
-          <div className="flex flex-wrap items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start md:self-auto">
-            <button
-              onClick={() => setClientTab('unique')}
-              className={`px-4 py-2 rounded-xl text-sm sm:text-base font-bold transition-colors ${
-                clientTab === 'unique'
-                  ? 'bg-white text-blue-700 shadow-xs'
-                  : 'text-slate-700 hover:text-slate-950'
-              }`}
-            >
-              Organisasi Unik ({uniqueClients.length})
-            </button>
-            <button
-              onClick={() => setClientTab('all')}
-              className={`px-4 py-2 rounded-xl text-sm sm:text-base font-bold transition-colors ${
-                clientTab === 'all'
-                  ? 'bg-white text-blue-700 shadow-xs'
-                  : 'text-slate-700 hover:text-slate-950'
-              }`}
-            >
-              Semua {rawClientsData.length} Entri Cetakan
-            </button>
-          </div>
+          <span className="text-blue-700 font-bold">{uniqueClients.length} Klien & Rakan Kerjasama</span>
         </div>
 
         {/* Filter & Search Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          {clientTab === 'unique' && (
+
             <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
               {[
                 { id: 'semua', label: 'Semua Kategori' },
@@ -253,7 +224,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </button>
               ))}
             </div>
-          )}
 
           <div className="relative w-full sm:w-80">
             <Search className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -268,7 +238,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
 
         {/* Clients Grid */}
-        {clientTab === 'unique' ? (
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredUniqueClients.map((client) => (
               <div
@@ -283,34 +253,11 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     {client.name}
                   </h4>
                 </div>
-                {client.count > 1 && (
-                  <span
-                    className="shrink-0 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-bold border border-blue-200"
-                    title={`${client.count} kemunculan dalam senarai cetakan`}
-                  >
-                    {client.count} Entri
-                  </span>
-                )}
+
               </div>
             ))}
           </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-            {filteredRawClients.map((client) => (
-              <div
-                key={client.source_no}
-                className="bg-white p-4 rounded-2xl border border-slate-200 flex items-center gap-3.5 text-sm sm:text-base"
-              >
-                <span className="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-mono font-bold flex items-center justify-center shrink-0">
-                  {client.source_no}
-                </span>
-                <span className="font-bold text-slate-900 leading-snug">
-                  {client.name_as_printed}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
+
       </section>
 
       {/* CTA Strip */}

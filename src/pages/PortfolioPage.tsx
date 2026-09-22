@@ -187,7 +187,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
             </button>
           )}
           <p className="text-slate-600 text-base leading-relaxed">
-            Dari pencahayaan Saloma Link hingga kerja di tapak industri. Pilih foto untuk melihat paparan penuh dan keterangannya.
+            Dari pencahayaan seni bina hingga kerja di tapak industri. Pilih foto untuk melihat paparan penuh dan keterangannya.
           </p>
 
           {/* Photos Grid */}
@@ -231,10 +231,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                       <Maximize2 className="w-5 h-5" />
                     </div>
 
-                    {/* Page indicator from profile book */}
-                    <div className="absolute bottom-2.5 right-2.5 text-xs text-slate-200 bg-slate-900/80 px-2.5 py-1 rounded font-mono font-bold">
-                      Muka Surat {item.page}
-                    </div>
+
                   </div>
 
                   {/* Caption & Metadata */}

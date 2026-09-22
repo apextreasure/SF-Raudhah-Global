@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProjectPhoto } from '../components/ProjectPhoto';
-import { rawClientsData } from '../data/clients';
+import { uniqueClients } from '../data/clients';
+import { imageMapData, categoryLabels } from '../data/imageMap';
 import {
   Zap,
   Wrench,
@@ -17,7 +18,7 @@ import {
   Layers,
   MapPin
 } from 'lucide-react';
-import { companyInfo, detailedServices, keyAchievements, processSteps } from '../data/companyContent';
+import { companyInfo, detailedServices, processSteps } from '../data/companyContent';
 import { PageId } from '../components/Header';
 
 interface HomePageProps {
@@ -100,7 +101,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
                 <div className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>{rawClientsData.length} Entri Pelanggan Cetakan</span>
+                  <span>{uniqueClients.length} Klien & Rakan Kerjasama</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
@@ -163,9 +164,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="text-xs sm:text-sm text-slate-600 mt-1">Komersial, industri & awam</div>
           </div>
           <div className="glass-card p-6 sm:p-7 rounded-2xl text-center border border-slate-200 shadow-xs hover:border-blue-300 transition-colors">
-            <div className="text-4xl sm:text-5xl font-black text-teal-700">{rawClientsData.length}</div>
-            <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">Entri Pelanggan Cetakan</div>
-            <div className="text-xs sm:text-sm text-slate-600 mt-1">Profil syarikat Mei 2026</div>
+            <div className="text-4xl sm:text-5xl font-black text-teal-700">{uniqueClients.length}</div>
+            <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">Klien & Rakan Kerjasama</div>
+            <div className="text-xs sm:text-sm text-slate-600 mt-1">Merentas pelbagai sektor</div>
           </div>
           <div className="glass-card p-6 sm:p-7 rounded-2xl text-center border border-slate-200 shadow-xs hover:border-blue-300 transition-colors">
             <div className="text-4xl sm:text-5xl font-black text-emerald-700">100%</div>
@@ -259,13 +260,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800 pb-8">
             <div>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950 px-3.5 py-1.5 rounded-full border border-cyan-800">
-                Pencapaian Kejuruteraan
+                Galeri Kerja
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-3">
-                Projek Berimpak Tinggi Pilihan
+                Sorotan Kerja Kami
               </h2>
               <p className="text-slate-300 text-base sm:text-xl mt-2 max-w-2xl font-normal">
-                Daripada mercu tanda seni bina ibu negara hingga fasiliti pengangkutan rel dan kargo udara antarabangsa.
+                Pencahayaan seni bina, kemudahan elektrik dan pemasangan dulang kabel di tapak industri.
               </p>
             </div>
             <button
@@ -278,14 +279,14 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {keyAchievements.slice(0, 3).map((item, idx) => (
+            {['p35-02-architectural-lighting.jpg', 'p31-04-warehouse-installation.jpg', 'p33-04-warehouse-cable-tray.jpg'].map(file => imageMapData.find(photo => photo.file === `assets/projects/${file}`)!).map((item, idx) => (
               <div
                 key={idx}
                 className="group bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-blue-500 transition-all duration-300"
               >
                 <ProjectPhoto
-                  src={item.image}
-                  label={item.category}
+                  src={`/${item.file}`}
+                  label={categoryLabels[item.category]}
                   variant="featured"
                   onOpen={onOpenLightboxByFile}
                 />
@@ -294,14 +295,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                      {item.title}
+                      {item.featuredTitle || item.alt_ms}
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-300 mt-2 flex flex-wrap items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-blue-400 shrink-0" />
-                      <span>{item.location}</span> • <span className="text-slate-200 font-semibold">{item.client}</span>
-                    </p>
+
                     <p className="text-base sm:text-lg text-slate-300 mt-3.5 leading-relaxed">
-                      {item.highlight}
+                      {item.alt_ms}
                     </p>
                   </div>
 
@@ -310,7 +308,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       onClick={() => onNavigate('portfolio')}
                       className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1.5"
                     >
-                      <span>Lihat Butiran Rekod</span>
+                      <span>Lihat Galeri Kerja</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
